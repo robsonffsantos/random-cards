@@ -1,16 +1,27 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { UserContextProps, UserContextType } from '../types/types'
+import { BASE_URL } from "../constants/url"
+import axios from "axios"
 
 export const GlobalStateContext = createContext({} as UserContextType)
 
 const UserProvider = ({ children }: UserContextProps) => {
-  const [walls, setWalls] = useState([])
+  const arr : number[] = []
+  let min: number = 0
+  let max: number = 889
+  const wordTyped: string = ''
 
-  function getGames () {
+  const getRandomNumber = () => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }  
 
+  const getGames = () => {
+    axios.get(`${BASE_URL}/`)
   }
 
-  const data = { walls, setWalls }
+  const data = { getRandomNumber, getGames }
 
   return (
     <GlobalStateContext.Provider value={data}>
