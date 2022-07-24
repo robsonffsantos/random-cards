@@ -1,16 +1,7 @@
 import { ReactNode } from "react"
 
-export interface Iwall {
-  id: number,
-  height: number,
-  width: number,
-  door: number,
-  window: number,
-  status: boolean
-}
-
 export type UserContextType = {
-  walls: Iwall[],
+  walls: [],
   setWalls: (id: number) => void
 }
 

@@ -1,10 +1,14 @@
 import { createContext, useState } from "react"
-import { Iwall, UserContextType, UserContextProps } from '../types/types'
+import { UserContextProps, UserContextType } from '../types/types'
 
 export const GlobalStateContext = createContext({} as UserContextType)
 
 const UserProvider = ({ children }: UserContextProps) => {
-  const [walls, setWalls] = useState<Iwall[]>([])
+  const [walls, setWalls] = useState([])
+
+  function getGames () {
+
+  }
 
   const data = { walls, setWalls }
 
