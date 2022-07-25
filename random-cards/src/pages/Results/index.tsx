@@ -1,30 +1,27 @@
 import React, { useEffect } from "react"
 import { useUser } from "../../context/GlobalStateContext"
 import { useNavigate } from "react-router-dom"
-import { Games } from "../../types/types"
+import { Pokemon } from "../../types/types"
 
 const Results = () => {
-  const { wordTyped, games, addGame, sortGames, fillArray, getGames } = useUser()
+  const { wordTyped, pokemon, addPokemon, sortPokemon } = useUser()
   const history = useNavigate()
 
-  // const fillInfo = () => {
-  //   fillArray()
-  //   getGames()
-  // }
-
-  const showCards = games.map((games: Games) => {
+  const showCards = pokemon.map((pokemon: Pokemon) => {
     return (
       <div>
-        <img src={games.info.thumb}/>
-        <div>{games.info.title}</div>
-        <div>{games.cheapestPriceEver.price}</div>  
+        <img src={pokemon.sprites.front_default}/>
+        <img src={pokemon.sprites.back_default}/>
+        <div>{pokemon.name}</div>
+        <div>{pokemon.id}</div>
+        <div>{pokemon.base_experience}</div> 
       </div>
     )
   })
 
   useEffect(() => {
-    console.log(games)
-  }, [games])
+
+  }, [pokemon])
 
   return (
     <div>
@@ -33,8 +30,8 @@ const Results = () => {
         {showCards}
       </div>
       <div>
-        <button onClick={sortGames}>Aleatorizar Cards</button>
-        <button onClick={addGame}>Adicionar novo jogo</button>
+        <button onClick={sortPokemon}>Aleatorizar Cards</button>
+        <button onClick={addPokemon}>Adicionar novo jogo</button>
         <button onClick={() => history('/')}>Escolher novo nome</button>
       </div>
     </div>

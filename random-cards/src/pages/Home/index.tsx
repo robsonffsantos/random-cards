@@ -3,12 +3,12 @@ import { useUser } from "../../context/GlobalStateContext"
 import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-  const { wordTyped, fillArray, setWordTyped, getGames } = useUser()
+  const { wordTyped, fillArray, setWordTyped, getPokemon } = useUser()
   const history = useNavigate()
 
   useEffect (() => {
     fillArray()
-    getGames()
+    getPokemon()
   }, [])
 
   return (
