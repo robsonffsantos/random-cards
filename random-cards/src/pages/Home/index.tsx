@@ -6,7 +6,7 @@ const Home = () => {
   const { wordTyped, fillArray, setWordTyped, getPokemon } = useUser()
   const history = useNavigate()
 
-  useEffect (() => {
+  useEffect(() => {
     fillArray()
     getPokemon()
   }, [])
@@ -15,9 +15,6 @@ const Home = () => {
     <div>
       <input value={wordTyped} onChange={(event) => setWordTyped(event.target.value as string)}></input>
       <button onClick={() => history('/results')}>Ver meus cards</button>
-      <div>
-      
-      </div>
     </div>
   )
 }

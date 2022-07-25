@@ -17,12 +17,6 @@ export const UserProvider = ({ children }: UserContextProps) => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-
-  const getRandomGrade = () => {
-    const minx = Math.ceil(1)
-    const maxx = Math.floor(10)
-    return Math.floor(Math.random() * (maxx - minx + 1)) + minx
-  }
   
   const fillArray = () => {
     pokemonIdArray = []
@@ -41,31 +35,34 @@ export const UserProvider = ({ children }: UserContextProps) => {
     let x = getRandomNumber()
     gamesId.push(x)
 
+    console.log(gamesId)
+
     setPokemonIdArray(gamesId)
   }
 
   const sortPokemon = () => {
     pokemon.sort(function(a, b){return 0.5 - Math.random()})
+    
   }
 
   const getPokemon = async() => {
-    const catchGames = pokemon
+    const catchPokemon = pokemon
     for (let i = 0; i < pokemonIdArray.length; i++) {
       await axios.get(`${BASE_URL}/${pokemonIdArray[i]}`)
       .then((res) => {
         console.log(res.data)
-        catchGames.push(res.data)
+        catchPokemon.push(res.data)
       })
       .catch((error) => {
         console.log(error)
       })
     }
 
-    setPokemon(catchGames)
+    setPokemon(catchPokemon)
     console.log(pokemon)
   }
 
-  const data = { pokemon, wordTyped, pokemonIdArray, fillArray, getPokemon, setWordTyped, addPokemon, sortPokemon, getRandomGrade }
+  const data = { pokemon, wordTyped, pokemonIdArray, fillArray, getPokemon, setWordTyped, addPokemon, sortPokemon }
 
   return (
     <GlobalStateContext.Provider value={data}>

@@ -19,8 +19,7 @@ export type UserContextType = {
   pokemon: Pokemon[],
   fillArray: () => void,
   addPokemon: () => void,
-  sortPokemon: () => void,
-  getRandomGrade: () => void
+  sortPokemon: () => void
 }
 
 export type UserContextProps = {
