@@ -16,8 +16,8 @@ export type UserContextType = {
   gamesIdArray : number[],
   wordTyped: string,
   setWordTyped: (value: string) => void,
-  getGames: (value: Games) => void,
-  games: Games,
+  getGames: () => void,
+  games: Games[],
   fillArray: () => void,
   addGame: () => void,
   sortGames: () => void

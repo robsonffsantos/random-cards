@@ -5,9 +5,8 @@ import axios from "axios"
 
 export const GlobalStateContext = createContext({} as UserContextType)
 
-const UserProvider = ({ children }: UserContextProps) => {
-  const [gamesIdArray, setGamesIdArray] = useState<number[]>([])
-  const valuesOfArray = useMemo(() => gamesIdArray.values(), [gamesIdArray])
+export const UserProvider = ({ children }: UserContextProps) => {
+  let [gamesIdArray, setGamesIdArray] = useState<number[]>([])
   let min: number = 1
   let max: number = 889
   const [wordTyped, setWordTyped] = useState<string>('teste')
@@ -20,6 +19,7 @@ const UserProvider = ({ children }: UserContextProps) => {
   }
   
   const fillArray = () => {
+    gamesIdArray = []
     const gamesId = gamesIdArray
     for (let i = 0; i <= 4; i++) {
       let x = getRandomNumber()
@@ -27,6 +27,7 @@ const UserProvider = ({ children }: UserContextProps) => {
     }
 
     setGamesIdArray(gamesId)
+    console.log(gamesIdArray)
   }
 
   const addGame = () => {
@@ -39,12 +40,17 @@ const UserProvider = ({ children }: UserContextProps) => {
   }
 
   const getGames = () => {
-    for (const values of valuesOfArray) {
-      axios.get(`${BASE_URL}/games?id=${values}`)
+    for (let i = 0; i <= gamesIdArray.length; i++) {
+      axios.get(`${BASE_URL}/games?id=${gamesIdArray[i]}`)
       .then((res) => {
         setGames(res.data)
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
       })
     }
+    console.log(games)
   }
 
   const data = { games, wordTyped, gamesIdArray, fillArray, getGames, setWordTyped, addGame, sortGames }

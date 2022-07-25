@@ -1,14 +1,24 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useUser } from "../../context/GlobalStateContext"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-  const { wordTyped, fillArray, setWordTyped, gamesIdArray } = useUser()
+  const { wordTyped, fillArray, setWordTyped, getGames, games } = useUser()
+  const history = useNavigate()
+
+  const teste = () => {
+    fillArray(),
+    getGames()
+    history('/results')
+  }
 
   return (
     <div>
       <input value={wordTyped} onChange={(event) => setWordTyped(event.target.value as string)}></input>
-      <button onClick={fillArray}>Ver meus cards</button>
-      {gamesIdArray}
+      <button onClick={teste}>Ver meus cards</button>
+      <div>
+      
+      </div>
     </div>
   )
 }

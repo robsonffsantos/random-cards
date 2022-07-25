@@ -1,5 +1,5 @@
 import Router from './routes/router'
-import UserProvider from './context/GlobalStateContext'
+import { UserProvider } from './context/GlobalStateContext'
 
 const App = () => {
   return (
