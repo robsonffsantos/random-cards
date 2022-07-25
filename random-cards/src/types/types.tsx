@@ -9,7 +9,16 @@ export type Games = {
   cheapestPriceEver: {
     price: string,
     date: Date
-  }
+  },
+  deals: [
+    {
+      storeID: string,
+      dealID: string,
+      price: string,
+      retailPrice: string,
+      savings: string
+    }
+  ]
 }
 
 export type UserContextType = {
@@ -20,7 +29,8 @@ export type UserContextType = {
   games: Games[],
   fillArray: () => void,
   addGame: () => void,
-  sortGames: () => void
+  sortGames: () => void,
+  getRandomGrade: () => void
 }
 
 export type UserContextProps = {
