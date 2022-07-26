@@ -6,12 +6,13 @@ import { Pokemon } from "../../types/types"
 const Results = () => {
   const { wordTyped, pokemon, addPokemon, sortPokemon } = useUser()
   const history = useNavigate()
-  let disableCount = 0
+  const [disableCount, setDisableCount] = useState(0)
   const [disable, setDisable] = useState<boolean>(false)
+  const [count, setCount] = useState(0)
 
   const onClickAdd = () => {
     if (disableCount < 3) {
-      disableCount++
+      setDisableCount(disableCount + 1)
       addPokemon()
     } else {
       setDisable(true)
@@ -19,13 +20,9 @@ const Results = () => {
     }
   }
 
-  useEffect (() => {
-    pokemon
-  }, [pokemon])
-
   return (
     <div>
-      {wordTyped}
+      {wordTyped} {count}
       <div>
         { pokemon.map((pokemon: Pokemon) => {
           return (
