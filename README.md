@@ -8,7 +8,7 @@
 
 ### Sobre o site
 O principal objetivo desse projeto é trabalhar com a API pública [Poke API](https://pokeapi.co).
-O projeto contém 2 páginas:
+O projeto contém 2 páginas responsivas, que podem ser visualizadas em computadores, celulares ou tablets:
 
 * Home
 ![image](https://user-images.githubusercontent.com/86332847/180912251-55d614d9-3ed1-4ca8-817d-3f309b4734eb.png)
