@@ -10,5 +10,13 @@ export const MainContainer = styled.div`
   border: 2px solid black;
   background-image: url(${Background});
   background-size: contain;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 98%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 98%;
+  }
 `
