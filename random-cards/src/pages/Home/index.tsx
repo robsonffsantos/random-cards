@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <input value={wordTyped} onChange={(event) => setWordTyped(event.target.value as string)}></input>
-      <button onClick={() => history('/results')}>Ver meus cards</button>
+      <button onClick={() => history('/results')} disabled={!wordTyped}>Ver meus cards</button>
     </div>
   )
 }

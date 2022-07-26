@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useMemo } from "react"
+import { createContext, useState, useContext, useMemo, useEffect } from "react"
 import { UserContextProps, UserContextType, Pokemon } from '../types/types'
 import { BASE_URL } from "../constants/url"
 import axios from "axios"
@@ -30,19 +30,23 @@ export const UserProvider = ({ children }: UserContextProps) => {
     setPokemonIdArray(gamesId)
   }
 
-  const addPokemon = () => {
-    const gamesId = pokemonIdArray
+  const addPokemon = async () => {
+    const catchPokemon = pokemon
     let x = getRandomNumber()
-    gamesId.push(x)
 
-    console.log(gamesId)
+    await axios.get(`${BASE_URL}/${x}`)
+      .then((res) => {
+        catchPokemon.push(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
 
-    setPokemonIdArray(gamesId)
+      setPokemon(catchPokemon)
   }
 
   const sortPokemon = () => {
     pokemon.sort(function(a, b){return 0.5 - Math.random()})
-    
   }
 
   const getPokemon = async() => {
@@ -50,7 +54,6 @@ export const UserProvider = ({ children }: UserContextProps) => {
     for (let i = 0; i < pokemonIdArray.length; i++) {
       await axios.get(`${BASE_URL}/${pokemonIdArray[i]}`)
       .then((res) => {
-        console.log(res.data)
         catchPokemon.push(res.data)
       })
       .catch((error) => {
@@ -59,7 +62,6 @@ export const UserProvider = ({ children }: UserContextProps) => {
     }
 
     setPokemon(catchPokemon)
-    console.log(pokemon)
   }
 
   const data = { pokemon, wordTyped, pokemonIdArray, fillArray, getPokemon, setWordTyped, addPokemon, sortPokemon }
