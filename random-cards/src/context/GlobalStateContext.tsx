@@ -42,7 +42,6 @@ export const UserProvider = ({ children }: UserContextProps) => {
     setPokemon(sortPokemon)
   }
 
-
   const getPokemon = async() => {
     const catchPokemon = pokemon
     for (let i = 0; i < pokemonIdArray.length; i++) {

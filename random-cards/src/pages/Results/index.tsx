@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useUser } from "../../context/GlobalStateContext"
 import { useNavigate } from "react-router-dom"
 import { Pokemon } from "../../types/types"
+import { MainContainer } from "../components/mainContainer"
+import { Cards, CardsContainer, ImageContainer, MainCard, PokemonName, Title, Image, Attributes, Attribute, DivButtons } from "./styled"
+import { Button } from "../components/button"
 
 const Results = () => {
   const { wordTyped, pokemon, addPokemon, sortPokemon } = useUser()
@@ -21,27 +24,39 @@ const Results = () => {
   }
 
   return (
-    <div>
-      {wordTyped} {count}
-      <div>
-        { pokemon.map((pokemon: Pokemon) => {
-          return (
-            <div>
-              <div>{pokemon.name}</div>
-              <img src={pokemon.sprites.front_default} />
-              <img src={pokemon.sprites.back_default} />
-              <div>{pokemon.id}</div>
-              <div>{pokemon.base_experience}</div>
-            </div>
-          )
-        })}
-      </div>
-      <div>
-        <button onClick={sortPokemon}>Aleatorizar Cards</button>
-        <button onClick={onClickAdd} disabled={disable}>Adicionar novo pokémon</button>
-        <button onClick={() => history('/')}>Escolher novo nome</button>
-      </div>
-    </div>
+    <MainContainer>
+      <CardsContainer>
+        <Title>
+          {wordTyped}
+        </Title>
+        <Cards>
+          {pokemon.map((pokemon: Pokemon) => {
+            return (
+              <MainCard>
+                <PokemonName>{pokemon.name.toUpperCase()}</PokemonName>
+                <ImageContainer>
+                  <Image src={pokemon.sprites.front_default} />
+                  <Image src={pokemon.sprites.back_default} />
+                </ImageContainer>
+                <Attributes>
+                  Número
+                  <Attribute>{pokemon.id}</Attribute>
+                </Attributes>
+                <Attributes>
+                  Experiência base
+                  <Attribute>{pokemon.base_experience}</Attribute>
+                </Attributes>
+              </MainCard>
+            )
+          })}
+        </Cards>
+        <DivButtons>
+          <Button onClick={sortPokemon}>Aleatorizar Cards</Button>
+          <Button onClick={onClickAdd} disabled={disable}>Adicionar novo pokémon</Button>
+          <Button onClick={() => history('/')}>Escolher novo nome</Button>
+        </DivButtons>
+      </CardsContainer>
+    </MainContainer>
   )
 }
 

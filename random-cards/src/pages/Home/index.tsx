@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect } from "react"
 import { useUser } from "../../context/GlobalStateContext"
 import { useNavigate } from "react-router-dom"
-import { Input, InputContainer, MainContainer } from "./styled"
+import { Input, InputContainer } from "./styled"
 import { Button } from "../components/button"
+import { MainContainer } from "../components/mainContainer"
 
 const Home = () => {
   const { wordTyped, fillArray, setWordTyped, getPokemon } = useUser()
