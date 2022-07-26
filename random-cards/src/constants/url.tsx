@@ -1,1 +1,1 @@
-export const BASE_URL = "https://www.cheapshark.com/api/1.0"
+export const BASE_URL = "https://pokeapi.co/api/v2/pokemon"

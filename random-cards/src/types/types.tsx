@@ -1,26 +1,25 @@
 import { ReactNode } from "react"
 
-export type Games = {
-  info: {
-    title: string,
-    steamAppID: string,
-    thumb: string
-  },
-  cheapestPriceEver: {
-    price: string,
-    date: Date
+export type Pokemon = {
+  id: number,
+  name: string,
+  base_experience: number,
+  location_area_encounters: string,
+  sprites: {
+    back_default: string,
+    front_default: string,
   }
 }
 
 export type UserContextType = {
-  gamesIdArray : number[],
+  pokemonIdArray : number[],
   wordTyped: string,
   setWordTyped: (value: string) => void,
-  getGames: () => void,
-  games: Games[],
+  getPokemon: () => void,
+  pokemon: Pokemon[],
   fillArray: () => void,
-  addGame: () => void,
-  sortGames: () => void
+  addPokemon: () => void,
+  sortPokemon: () => void
 }
 
 export type UserContextProps = {
