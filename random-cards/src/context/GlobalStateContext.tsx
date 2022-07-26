@@ -31,22 +31,15 @@ export const UserProvider = ({ children }: UserContextProps) => {
   }
 
   const addPokemon = async () => {
-    const catchPokemon = pokemon
     let x = getRandomNumber()
 
-    await axios.get(`${BASE_URL}/${x}`)
-      .then((res) => {
-        catchPokemon.push(res.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
-      setPokemon(catchPokemon)
+    const {data} = await axios.get(`${BASE_URL}/${x}`)
+      setPokemon([...pokemon, data])
   }
 
   const sortPokemon = () => {
-    pokemon.sort(function(a, b){return 0.5 - Math.random()})
+    const sortPokemon = pokemon.sort(function(a, b){return 0.5 - Math.random()})
+    setPokemon(sortPokemon)
   }
 
   const getPokemon = async() => {
@@ -64,10 +57,10 @@ export const UserProvider = ({ children }: UserContextProps) => {
     setPokemon(catchPokemon)
   }
 
-  const data = { pokemon, wordTyped, pokemonIdArray, fillArray, getPokemon, setWordTyped, addPokemon, sortPokemon }
+  const variables = { pokemon, wordTyped, pokemonIdArray, fillArray, getPokemon, setWordTyped, addPokemon, sortPokemon }
 
   return (
-    <GlobalStateContext.Provider value={data}>
+    <GlobalStateContext.Provider value={variables}>
       {children}
     </GlobalStateContext.Provider>
   )
